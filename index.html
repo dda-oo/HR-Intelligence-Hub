@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HR Intelligence Hub | Global HR Pulse</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="brand">
+          <span class="brand-mark">R</span>
+          <div>
+            <p class="brand-title">RadarRoster</p>
+            <p class="brand-subtitle">HR Intelligence Hub</p>
+          </div>
+        </div>
+        <nav class="nav-links">
+          <a href="#pulse">HR Pulse</a>
+          <a href="#insights">Insights</a>
+          <a href="#sources">Data Sources</a>
+        </nav>
+        <a class="cta" href="https://radarroster.com/#contact" target="_blank" rel="noreferrer">
+          Free Strategy Call
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="hero-copy">
+            <p class="eyebrow">AI & DATA INTELLIGENCE CONSULTING</p>
+            <h1>Global HR Pulse Dashboard</h1>
+            <p class="subtitle">
+              A live, single-page view of labor market signals for HR leaders.
+              Monitor unemployment, inflation, and negotiation pressure to
+              prepare for collective bargaining and workforce shifts.
+            </p>
+            <p class="hero-note">
+              RadarRoster designs executive dashboards across HR, finance,
+              operations, and the public sector.
+            </p>
+            <div class="hero-actions">
+              <a class="primary" href="https://radarroster.com/#contact" target="_blank" rel="noreferrer">
+                Book Free Strategy Call
+              </a>
+            </div>
+            <p class="micro-promise">
+              Get a tailored negotiation risk brief + a 14-day data roadmap for your sector.
+            </p>
+            <div class="timestamp" id="last-updated">Last updated: --</div>
+            <div class="timestamp" id="auto-refresh">Auto refresh: --</div>
+          </div>
+          <div class="hero-card">
+            <h2>HR Pulse Summary</h2>
+            <p id="pulse-summary">
+              Loading live signals from global sources...
+            </p>
+              <p class="decision-cue" id="decision-cue">Decision cue: --</p>
+            <div class="summary-tags">
+              <span id="tag-unemployment">Unemployment</span>
+              <span id="tag-unrest">Labor unrest</span>
+              <span id="tag-negotiations">Collective bargaining</span>
+              <span id="tag-inflation">Inflation</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-strip">
+        <div class="container">
+          <div class="proof-badges">
+            <span>Trusted by HR, public sector, and enterprise teams</span>
+            <span>Global signals, refreshed continuously</span>
+            <span>GDPR-friendly · No personal data</span>
+            <span>Designed for government & enterprise decision‑makers</span>
+          </div>
+        </div>
+      </section>
+
+        <section class="tariftool-section">
+          <div class="container">
+            <div class="tariftool-card">
+              <div>
+                <p class="eyebrow">RADARROSTER | NEGOTIATION INTELLIGENCE</p>
+                <h2>Be prepared for collective bargaining</h2>
+                <p>
+                  RadarRoster helps governments and enterprises anticipate
+                  labor negotiations, quantify economic pressure, and align HR
+                  strategy with real-time signals.
+                </p>
+              </div>
+              <a class="primary" href="https://radarroster.com/#contact" target="_blank" rel="noreferrer">
+                Book a Strategy Call
+              </a>
+            </div>
+          </div>
+        </section>
+
+      <section class="global-section">
+        <div class="container">
+          <div class="global-card">
+            <div>
+              <p class="eyebrow">GLOBAL VIEW</p>
+              <h2>Choose a country to localize the insights</h2>
+              <p>
+                The dashboard defaults to global aggregates. Select a country
+                to update unemployment, inflation, and negotiation signals.
+              </p>
+              <label class="select-label" for="country-select">Country</label>
+              <p class="map-hint">Select a country to update all metrics.</p>
+              <select id="country-select"></select>
+              <p class="kpi-meta" id="country-meta">Selected: Global</p>
+            </div>
+            <div id="country-map" class="country-map"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pulse" class="kpi-section">
+        <div class="container">
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <p class="kpi-label" id="label-unemployment">
+                Unemployment Rate <span class="delta-chip" id="delta-unemployment">--</span>
+              </p>
+              <p class="metric-help">Share of workforce without jobs (annual %). Lower is tighter labor.</p>
+              <h3 id="kpi-unemployment">--</h3>
+              <p class="kpi-meta" id="kpi-unemployment-meta">Latest year</p>
+              <p class="kpi-insight" id="kpi-unemployment-insight">--</p>
+              <canvas id="spark-unemployment" class="sparkline"></canvas>
+            </div>
+            <div class="kpi-card">
+              <p class="kpi-label" id="label-unrest">
+                Labor Unrest Index <span class="delta-chip" id="delta-unrest">--</span>
+              </p>
+              <p class="metric-help">Monthly news mentions of strikes/unrest (higher = more tension).</p>
+              <h3 id="kpi-unrest">--</h3>
+              <p class="kpi-meta" id="kpi-unrest-meta">News articles / month</p>
+              <p class="kpi-insight" id="kpi-unrest-insight">--</p>
+              <canvas id="spark-unrest" class="sparkline"></canvas>
+            </div>
+            <div class="kpi-card">
+              <p class="kpi-label" id="label-negotiations">
+                Collective Bargaining Pulse <span class="delta-chip" id="delta-negotiations">--</span>
+              </p>
+              <p class="metric-help">Monthly bargaining mentions (proxy for negotiation activity).</p>
+              <h3 id="kpi-negotiations">--</h3>
+              <p class="kpi-meta" id="kpi-negotiations-meta">News articles / month</p>
+              <p class="kpi-insight" id="kpi-negotiations-insight">--</p>
+              <canvas id="spark-negotiations" class="sparkline"></canvas>
+            </div>
+            <div class="kpi-card">
+              <p class="kpi-label" id="label-inflation">
+                Inflation (CPI YoY) <span class="delta-chip" id="delta-inflation">--</span>
+              </p>
+              <p class="metric-help">Annual consumer price change (higher = wage pressure).</p>
+              <h3 id="kpi-inflation">--</h3>
+              <p class="kpi-meta" id="kpi-inflation-meta">Latest year</p>
+              <p class="kpi-insight" id="kpi-inflation-insight">--</p>
+              <canvas id="spark-inflation" class="sparkline"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="insights" class="charts-section">
+        <div class="container">
+          <div class="chart-grid">
+            <article class="chart-card">
+              <header>
+                <h3 id="chart-title-unemployment">Unemployment Trend</h3>
+                <p>
+                  World Bank data (annual)
+                  <span class="confidence-badge" id="badge-unemployment">--</span>
+                </p>
+              </header>
+              <canvas id="chart-unemployment"></canvas>
+            </article>
+            <article class="chart-card">
+              <header>
+                <h3 id="chart-title-unrest">Labor Unrest Mentions</h3>
+                <p>
+                  GDELT news monitoring (country selection)
+                  <span class="confidence-badge" id="badge-unrest">--</span>
+                </p>
+              </header>
+              <canvas id="chart-unrest"></canvas>
+            </article>
+            <article class="chart-card">
+              <header>
+                <h3 id="chart-title-negotiations">Collective Bargaining Pulse</h3>
+                <p>
+                  Collective bargaining negotiation mentions
+                  <span class="confidence-badge" id="badge-negotiations">--</span>
+                </p>
+              </header>
+              <canvas id="chart-negotiations"></canvas>
+            </article>
+            <article class="chart-card">
+              <header>
+                <h3 id="chart-title-inflation">Inflation Pressure (CPI YoY)</h3>
+                <p>
+                  World Bank data (annual)
+                  <span class="confidence-badge" id="badge-inflation">--</span>
+                </p>
+              </header>
+              <canvas id="chart-inflation"></canvas>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="negotiation-section">
+        <div class="container">
+          <div class="negotiation-header">
+            <div>
+              <p class="eyebrow">NEGOTIATION INTELLIGENCE</p>
+              <h2>Signals tailored for collective bargaining</h2>
+              <p>
+                Track negotiation risk, settlement momentum, and union agendas
+                to prepare faster and with confidence.
+              </p>
+            </div>
+          </div>
+          <div class="negotiation-grid">
+            <div class="negotiation-card">
+              <h3 id="risk-title">Negotiation Risk Score</h3>
+              <p class="metric-help">0–100 composite: macro + unrest + bargaining.</p>
+              <div class="score" id="risk-score">--</div>
+              <p class="kpi-meta" id="risk-meta">Based on macro + unrest</p>
+              <p class="insight" id="risk-insight">--</p>
+            </div>
+            <div class="negotiation-card">
+              <h3 id="pressure-title">Wage Pressure Index</h3>
+              <p class="metric-help">Inflation minus unemployment (pts). Higher = stronger demands.</p>
+              <div class="score" id="pressure-score">--</div>
+              <p class="kpi-meta" id="pressure-meta">Inflation - unemployment</p>
+              <p class="insight" id="pressure-insight">--</p>
+            </div>
+            <div class="negotiation-card">
+              <h3 id="slack-title">Labor Slack Shift</h3>
+              <p class="metric-help">Latest unemployment vs 3‑year average (pts).</p>
+              <div class="score" id="slack-score">--</div>
+              <p class="kpi-meta" id="slack-meta">Latest vs 3y average</p>
+              <p class="insight" id="slack-insight">--</p>
+            </div>
+            <div class="negotiation-card">
+              <h3 id="momentum-title">Economic Momentum</h3>
+              <p class="metric-help">GDP growth YoY. Negative weakens bargaining.</p>
+              <div class="score" id="momentum-score">--</div>
+              <p class="kpi-meta" id="momentum-meta">GDP growth (YoY)</p>
+              <p class="insight" id="momentum-insight">--</p>
+            </div>
+          </div>
+          <div class="negotiation-visuals">
+            <div class="negotiation-card">
+              <h3 id="radar-title">Negotiation Risk Radar</h3>
+              <p class="kpi-meta">Relative pressure across signals</p>
+              <canvas id="chart-risk-radar" class="compact-chart"></canvas>
+            </div>
+            <div class="negotiation-card">
+              <h3 id="distribution-title">Risk Trajectory (6Y)</h3>
+              <p class="kpi-meta">6-year trend of negotiation risk</p>
+              <canvas id="chart-risk-dist" class="compact-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sources" class="sources-section">
+        <div class="container">
+          <h2>Data Sources & Notes</h2>
+          <div class="sources-grid">
+            <div>
+              <h4>World Bank (Global)</h4>
+              <p>
+                Unemployment, inflation, and GDP growth data via the World Bank API.
+              </p>
+            </div>
+            <div>
+              <h4>GDELT Project (Global)</h4>
+              <p>
+                News volume tracking for labor and bargaining mentions. Country
+                filters apply where available.
+              </p>
+            </div>
+            <div>
+              <h4>Rest Countries + OpenStreetMap</h4>
+              <p>
+                Country metadata and a dynamic map to localize insights for any
+                region.
+              </p>
+            </div>
+            <div>
+              <h4>Derived Metrics</h4>
+              <p>
+                Risk score, wage pressure, and slack shift are calculated from
+                public macro indicators for comparability.
+              </p>
+            </div>
+          </div>
+          <p class="disclaimer">
+            This dashboard uses public data sources and contains no personal or
+            sensitive information. Metrics are aggregated, indicative, and may
+            be delayed or incomplete depending on source availability.
+          </p>
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-card">
+            <div>
+              <p class="eyebrow">READY TO ACT</p>
+              <h2>Turn negotiation signals into a clear strategy</h2>
+              <p>
+                Get a tailored assessment of labor risk, negotiation readiness,
+                and data infrastructure. We will map the quickest path from
+                insight to action.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <a class="primary" href="https://radarroster.com/#contact" target="_blank" rel="noreferrer">
+                Request Strategy Call
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="terms-section">
+        <div class="container">
+          <h2>Terms & Conditions</h2>
+          <div class="terms-grid">
+            <div>
+              <h4>Informational Use</h4>
+              <p>
+                This dashboard is provided for informational purposes only and
+                does not constitute legal, financial, or HR advice.
+              </p>
+            </div>
+            <div>
+              <h4>Data Accuracy</h4>
+              <p>
+                Data is sourced from public APIs and may be incomplete,
+                delayed, or subject to change without notice.
+              </p>
+            </div>
+            <div>
+              <h4>No Liability</h4>
+              <p>
+                RadarRoster is not liable for actions taken based on this
+                dashboard or its data sources.
+              </p>
+            </div>
+            <div>
+              <h4>Use of Insights</h4>
+              <p>
+                Derived metrics are illustrative and should be validated against
+                internal data before decisions.
+              </p>
+            </div>
+            <div>
+              <h4>Contact & Services</h4>
+              <p>
+                For tailored insights, operational support, or implementation
+                services, contact RadarRoster directly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div>
+          <span class="brand-mark small">R</span>
+          <span>
+            <a href="https://radarroster.com" target="_blank" rel="noreferrer">
+              RadarRoster
+            </a>
+          </span>
+        </div>
+        <p>
+          Empowering businesses and governments with AI and data-driven insights.
+        </p>
+      </div>
+    </footer>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
