@@ -1,3 +1,5 @@
+// Core client logic for the HR Pulse dashboard.
+// Designed to be easy to extend with new indicators and data sources.
 const config = typeof HR_HUB_CONFIG !== "undefined" ? HR_HUB_CONFIG : {};
 const corsProxy = config.corsProxy || "";
 const defaultCountryCode = config.defaultCountryCode || "WLD";

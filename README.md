@@ -1,8 +1,14 @@
 # HR-Intelligence-Hub
 
-Single-page HR Pulse dashboard for global labor signals. Built as a
-showcase portfolio for RadarRoster to demonstrate live data integration,
+Open-source, single-page HR Pulse dashboard for global labor signals. Built as
+a showcase portfolio for RadarRoster to demonstrate live data integration,
 actionable HR insights, and B2B-ready analytics.
+
+**Author:** Daryoosh Dehestani (GitHub: `dda-oo`)  
+**Business:** RadarRoster — https://radarroster.com
+
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://dda-oo.github.io/HR-Intelligence-Hub/)
+[![License](https://img.shields.io/badge/license-CC%20BY%204.0-blue)](LICENSE)
 
 ## What’s Included
 
@@ -17,6 +23,10 @@ actionable HR insights, and B2B-ready analytics.
 ## Quick Start
 
 Open `index.html` in your browser. No build step required.
+
+## Live Demo
+
+https://dda-oo.github.io/HR-Intelligence-Hub/
 
 ## Optional Configuration
 
@@ -33,3 +43,49 @@ Update `config.js` to set:
 
 If a live data source is unavailable, the dashboard falls back to sample data to
 keep the UI functional for demos.
+
+## Responsible AI & Ethics
+
+This project uses public, aggregated data only. It avoids personal or sensitive
+information and is designed for decision support, not automated decision-making.
+
+## Data Freshness
+
+| Source | Update cadence | Notes |
+| --- | --- | --- |
+| World Bank | Annual | Unemployment, inflation, GDP |
+| GDELT | Near real-time | News volume signals |
+| Rest Countries | Ad hoc | Country metadata |
+
+## Use Cases
+
+- Public sector negotiation readiness and strike prevention
+- Enterprise labor risk monitoring and wage planning
+- Executive dashboards for cross‑functional operational decisions
+
+## Attribution
+
+If you use this project publicly, please credit both:
+
+- Daryoosh Dehestani (`dda-oo`)
+- RadarRoster (https://radarroster.com)
+
+Suggested credit line:
+
+> “Based on the HR Intelligence Hub by Daryoosh Dehestani (dda-oo) and RadarRoster.”
+
+## License
+
+This project is licensed under **CC BY 4.0**. See `LICENSE` and `NOTICE.md`.
+
+## Contributing
+
+PRs are welcome. If you extend the dashboard, please keep the attribution and
+add your changes clearly in the README or release notes.
+
+## Roadmap Ideas
+
+- Add country vs world comparison chips for each KPI
+- Add regional filters (EU, DACH, LATAM, APAC)
+- Add data freshness badges per source
+- Add email briefing export (mailto)
