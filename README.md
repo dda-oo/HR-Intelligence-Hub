@@ -28,6 +28,15 @@ Open `index.html` in your browser. No build step required.
 
 https://dda-oo.github.io/HR-Intelligence-Hub/
 
+## Open Source Spotlight
+
+This project is open source and maintained on GitHub. If you want to improve
+the signals, add new metrics, or share enhancements, you are invited to
+contribute and help enrich the dashboard:
+
+- GitHub repository: https://github.com/dda-oo/HR-Intelligence-Hub
+- Contribution guide: `CONTRIBUTING.md`
+
 ## Optional Configuration
 
 Update `config.js` to set:

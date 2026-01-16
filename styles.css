@@ -519,6 +519,40 @@ a {
   flex-wrap: wrap;
 }
 
+.open-source-section {
+  padding: 40px 0 60px;
+  background: #ffffff;
+}
+
+.open-source-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  width: 100%;
+}
+
+.open-source-card h2 {
+  margin: 6px 0 8px;
+}
+
+.open-source-card p {
+  margin: 0;
+  color: #475569;
+  max-width: 680px;
+}
+
+.open-source-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .terms-section {
   padding: 40px 0 50px;
   background: #f8fafc;
