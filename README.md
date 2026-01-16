@@ -47,6 +47,12 @@ or withdraw consent via the "Manage privacy" link in the footer.
 Reference policy (RadarRoster privacy statement):
 https://radarroster.com/pages/datenschutz.html
 
+## Policies & Statements
+
+- Privacy notice: `PRIVACY.md`
+- Accessibility: `ACCESSIBILITY.md`
+- GDPR summary: `GDPR.md`
+
 ## Optional Configuration
 
 Update `config.js` to set:

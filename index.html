@@ -445,13 +445,14 @@
       </section>
     </main>
 
-    <div class="consent-banner" id="consent-banner" role="dialog" aria-live="polite" aria-label="Privacy consent">
+    <div class="consent-banner" id="consent-banner" role="dialog" aria-live="polite" aria-label="Privacy consent" data-state="hidden" aria-hidden="true">
       <div class="consent-content">
         <p class="consent-title">Privacy & analytics</p>
         <p>
-          We use analytics (Google Analytics and Microsoft Clarity) to understand
-          usage and improve the dashboard. You can accept or decline. This choice
-          can be changed anytime from the footer.
+          We use Google Analytics and Microsoft Clarity to understand usage and
+          improve the dashboard. In the EU/EEA/UK, consent is required before
+          analytics start. You can accept or decline and change this anytime from
+          the footer.
         </p>
       </div>
       <div class="consent-actions">
@@ -534,12 +535,16 @@
         function hideBanner() {
           if (banner) {
             banner.setAttribute("data-state", "hidden");
+            banner.setAttribute("aria-hidden", "true");
+            banner.style.display = "none";
           }
         }
 
         function showBanner() {
           if (banner) {
             banner.setAttribute("data-state", "visible");
+            banner.setAttribute("aria-hidden", "false");
+            banner.style.display = "flex";
           }
         }
 

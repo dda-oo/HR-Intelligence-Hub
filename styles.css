@@ -667,19 +667,22 @@ a {
 
 .consent-banner {
   position: fixed;
-  left: 24px;
   right: 24px;
   bottom: 24px;
-  background: #0f172a;
-  color: #ffffff;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
-  padding: 18px 20px;
+  padding: 16px 18px;
   display: none;
   gap: 16px;
   align-items: center;
   justify-content: space-between;
   z-index: 20;
-  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.25);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.16);
+  max-width: 420px;
+  width: min(420px, calc(100% - 48px));
+  pointer-events: auto;
 }
 
 .consent-banner[data-state="visible"] {
@@ -698,7 +701,7 @@ a {
 .consent-banner p {
   margin: 0;
   font-size: 13px;
-  color: #e2e8f0;
+  color: #475569;
   line-height: 1.4;
 }
 
@@ -708,15 +711,22 @@ a {
   flex-wrap: wrap;
 }
 
+.consent-actions button {
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .consent-actions .primary {
   background: #38bdf8;
   color: #0f172a;
 }
 
 .consent-actions .secondary {
-  background: transparent;
-  color: #ffffff;
-  border: 1px solid #475569;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #0f172a;
 }
 
 .brand-mark.small {
@@ -755,6 +765,8 @@ a {
     left: 12px;
     right: 12px;
     bottom: 12px;
+    width: auto;
+    max-width: none;
     flex-direction: column;
     align-items: flex-start;
   }
