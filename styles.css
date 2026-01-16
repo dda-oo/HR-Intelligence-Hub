@@ -520,21 +520,21 @@ a {
 }
 
 .open-source-section {
-  padding: 40px 0 60px;
+  padding: 32px 0 48px;
   background: #ffffff;
 }
 
 .open-source-card {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 24px;
   align-items: center;
-  justify-content: space-between;
-  padding: 28px;
+  padding: 26px;
   border-radius: 20px;
   border: 1px solid #e2e8f0;
   background: #f8fafc;
   width: 100%;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
 }
 
 .open-source-card h2 {
@@ -551,6 +551,18 @@ a {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.open-source-actions .secondary {
+  background: #0f172a;
+  color: #ffffff;
+  border: 1px solid #0f172a;
+}
+
+.open-source-actions .primary {
+  background: #38bdf8;
+  color: #0f172a;
 }
 
 .terms-section {
@@ -634,5 +646,13 @@ a {
   .hero-actions {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .open-source-card {
+    grid-template-columns: 1fr;
+  }
+
+  .open-source-actions {
+    justify-content: flex-start;
   }
 }
