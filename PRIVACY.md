@@ -5,9 +5,7 @@ We aim to minimize data collection and only use analytics after consent.
 
 ### Analytics & Consent
 
-This site uses:
-- Google Analytics (GA4)
-- Microsoft Clarity
+This site uses analytics tools for usage insights and performance monitoring.
 
 Both tools are loaded only after a visitor opts in via the consent banner. You
 can change your preference anytime using the "Manage privacy" link in the footer.

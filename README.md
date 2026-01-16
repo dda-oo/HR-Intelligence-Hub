@@ -39,8 +39,8 @@ contribute and help enrich the dashboard:
 
 ## Privacy, Analytics & Consent
 
-This dashboard uses privacy-friendly consent gating for analytics. Google
-Analytics and Microsoft Clarity only load after a visitor opts in. For EU/EEA
+This dashboard uses privacy-friendly consent gating for analytics. Analytics
+tools only load after a visitor opts in. For EU/EEA
 visitors, consent is required before tracking is enabled. Visitors can manage
 or withdraw consent via the "Manage privacy" link in the footer.
 

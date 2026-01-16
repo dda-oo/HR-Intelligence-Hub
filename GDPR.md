@@ -6,8 +6,7 @@ control in the footer.
 
 ### Analytics Tools
 
-- Google Analytics (GA4)
-- Microsoft Clarity
+- Analytics tools used for usage insights and performance monitoring
 
 ### Full Privacy Policy
 
