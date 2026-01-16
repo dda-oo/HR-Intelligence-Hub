@@ -14,4 +14,4 @@ can change your preference anytime using the "Manage privacy" link in the footer
 
 The full RadarRoster privacy policy (controller, legal basis, and processing
 details) is published here:
-https://radarroster.com/pages/datenschutz.html
+[RadarRoster privacy policy](https://radarroster.com/pages/datenschutz.html)

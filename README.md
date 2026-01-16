@@ -1,6 +1,6 @@
 # HR-Intelligence-Hub
 
-Open-source, single-page HR Pulse dashboard for global labor signals. Built as
+Open-source, single-page HR Intelligence Hub dashboard for global labor signals. Built as
 a showcase portfolio for RadarRoster to demonstrate live data integration,
 actionable HR insights, and B2B-ready analytics.
 
@@ -45,7 +45,7 @@ visitors, consent is required before tracking is enabled. Visitors can manage
 or withdraw consent via the "Manage privacy" link in the footer.
 
 Reference policy (RadarRoster privacy statement):
-https://radarroster.com/pages/datenschutz.html
+[RadarRoster privacy policy](https://radarroster.com/pages/datenschutz.html)
 
 ## Policies & Statements
 

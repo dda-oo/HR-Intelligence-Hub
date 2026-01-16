@@ -11,4 +11,4 @@ control in the footer.
 ### Full Privacy Policy
 
 RadarRoster privacy policy:
-https://radarroster.com/pages/datenschutz.html
+[RadarRoster privacy policy](https://radarroster.com/pages/datenschutz.html)
