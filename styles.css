@@ -643,6 +643,82 @@ a {
   justify-content: space-between;
 }
 
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.footer-links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #475569;
+}
+
+.footer-links a {
+  color: inherit;
+}
+
+.consent-banner {
+  position: fixed;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: none;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.25);
+}
+
+.consent-banner[data-state="visible"] {
+  display: flex;
+}
+
+.consent-content {
+  max-width: 720px;
+}
+
+.consent-title {
+  margin: 0 0 6px;
+  font-weight: 600;
+}
+
+.consent-banner p {
+  margin: 0;
+  font-size: 13px;
+  color: #e2e8f0;
+  line-height: 1.4;
+}
+
+.consent-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.consent-actions .primary {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.consent-actions .secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #475569;
+}
+
 .brand-mark.small {
   width: 28px;
   height: 28px;
@@ -673,5 +749,13 @@ a {
 
   .open-source-actions {
     justify-content: flex-start;
+  }
+
+  .consent-banner {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

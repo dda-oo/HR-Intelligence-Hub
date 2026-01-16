@@ -37,6 +37,16 @@ contribute and help enrich the dashboard:
 - GitHub repository: https://github.com/dda-oo/HR-Intelligence-Hub
 - Contribution guide: `CONTRIBUTING.md`
 
+## Privacy, Analytics & Consent
+
+This dashboard uses privacy-friendly consent gating for analytics. Google
+Analytics and Microsoft Clarity only load after a visitor opts in. For EU/EEA
+visitors, consent is required before tracking is enabled. Visitors can manage
+or withdraw consent via the "Manage privacy" link in the footer.
+
+Reference policy (RadarRoster privacy statement):
+https://radarroster.com/pages/datenschutz.html
+
 ## Optional Configuration
 
 Update `config.js` to set:

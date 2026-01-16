@@ -4,23 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HR Intelligence Hub | Global HR Pulse</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DJ8BKFEMDQ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-DJ8BKFEMDQ');
-    </script>
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "v2d2axyrt5");
-    </script>
+    <!-- Analytics loaded after consent (see consent script before </body>) -->
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <link
@@ -381,7 +365,7 @@
         </div>
       </section>
 
-      <section class="terms-section">
+      <section id="terms" class="terms-section">
         <div class="container">
           <h2>Terms & Conditions</h2>
           <div class="terms-grid">
@@ -420,10 +404,61 @@
                 services, contact RadarRoster directly.
               </p>
             </div>
+            <div>
+              <h4>Privacy & Cookies</h4>
+              <p>
+                We use Google Analytics and Microsoft Clarity to improve this
+                dashboard. In regions requiring consent (e.g., EEA/UK), tracking
+                activates only after opt-in. You can accept or decline via the
+                consent banner and manage choices anytime.
+              </p>
+            </div>
+            <div>
+              <h4>Accessibility</h4>
+              <p>
+                We aim to keep this dashboard accessible and usable for all
+                visitors. If you experience any accessibility issues, please
+                contact RadarRoster.
+              </p>
+            </div>
+            <div>
+              <h4>GDPR</h4>
+              <p>
+                For EU/EEA visitors, analytics are disabled until consent is
+                provided. You can manage or withdraw consent at any time.
+              </p>
+            </div>
+            <div>
+              <h4>Legal & Privacy Policy</h4>
+              <p>
+                Full privacy details, controller information, and data handling
+                are documented at the RadarRoster privacy policy.
+              </p>
+              <p>
+                <a href="https://radarroster.com/pages/datenschutz.html" target="_blank" rel="noreferrer">
+                  https://radarroster.com/pages/datenschutz.html
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
     </main>
+
+    <div class="consent-banner" id="consent-banner" role="dialog" aria-live="polite" aria-label="Privacy consent">
+      <div class="consent-content">
+        <p class="consent-title">Privacy & analytics</p>
+        <p>
+          We use analytics (Google Analytics and Microsoft Clarity) to understand
+          usage and improve the dashboard. You can accept or decline. This choice
+          can be changed anytime from the footer.
+        </p>
+      </div>
+      <div class="consent-actions">
+        <button class="secondary" type="button" id="consent-decline">Decline</button>
+        <button class="primary" type="button" id="consent-accept">Accept</button>
+      </div>
+    </div>
 
     <footer class="site-footer">
       <div class="container">
@@ -438,6 +473,16 @@
         <p>
           Empowering businesses and governments with AI and data-driven insights.
         </p>
+        <div class="footer-links">
+          <a href="https://radarroster.com/pages/datenschutz.html" target="_blank" rel="noreferrer">
+            Legal / Privacy
+          </a>
+          <a href="#terms">Accessibility</a>
+          <a href="#terms">GDPR</a>
+        </div>
+        <button class="link-button" type="button" id="manage-consent">
+          Manage privacy
+        </button>
       </div>
     </footer>
 
@@ -448,5 +493,101 @@
     ></script>
     <script src="config.js"></script>
     <script src="app.js"></script>
+    <script>
+      (function() {
+        var CONSENT_KEY = "rr-analytics-consent";
+        var banner = document.getElementById("consent-banner");
+        var acceptBtn = document.getElementById("consent-accept");
+        var declineBtn = document.getElementById("consent-decline");
+        var manageBtn = document.getElementById("manage-consent");
+        var analyticsLoaded = false;
+
+        function loadAnalytics() {
+          if (analyticsLoaded) return;
+          analyticsLoaded = true;
+
+          var gaScript = document.createElement("script");
+          gaScript.async = true;
+          gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-DJ8BKFEMDQ";
+          document.head.appendChild(gaScript);
+
+          var gaInline = document.createElement("script");
+          gaInline.text = [
+            "window.dataLayer = window.dataLayer || [];",
+            "function gtag(){dataLayer.push(arguments);}",
+            "gtag('js', new Date());",
+            "gtag('config', 'G-DJ8BKFEMDQ');"
+          ].join("\n");
+          document.head.appendChild(gaInline);
+
+          var clarityScript = document.createElement("script");
+          clarityScript.text = [
+            "(function(c,l,a,r,i,t,y){",
+            "c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};",
+            "t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;",
+            "y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);",
+            "})(window, document, 'clarity', 'script', 'v2d2axyrt5');"
+          ].join("\n");
+          document.head.appendChild(clarityScript);
+        }
+
+        function hideBanner() {
+          if (banner) {
+            banner.setAttribute("data-state", "hidden");
+          }
+        }
+
+        function showBanner() {
+          if (banner) {
+            banner.setAttribute("data-state", "visible");
+          }
+        }
+
+        function setConsent(value) {
+          try {
+            localStorage.setItem(CONSENT_KEY, value);
+          } catch (e) {
+            // Ignore storage errors and proceed with banner state only.
+          }
+        }
+
+        var stored = null;
+        try {
+          stored = localStorage.getItem(CONSENT_KEY);
+        } catch (e) {
+          stored = null;
+        }
+
+        if (stored === "granted") {
+          loadAnalytics();
+          hideBanner();
+        } else if (stored === "denied") {
+          hideBanner();
+        } else {
+          showBanner();
+        }
+
+        if (acceptBtn) {
+          acceptBtn.addEventListener("click", function() {
+            setConsent("granted");
+            loadAnalytics();
+            hideBanner();
+          });
+        }
+
+        if (declineBtn) {
+          declineBtn.addEventListener("click", function() {
+            setConsent("denied");
+            hideBanner();
+          });
+        }
+
+        if (manageBtn) {
+          manageBtn.addEventListener("click", function() {
+            showBanner();
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
